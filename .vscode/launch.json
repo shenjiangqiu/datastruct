@@ -21,7 +21,7 @@
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
             "stopOnEntry": false,
-            "mainClass": "cs2321.TimeTest",
+            "mainClass": "cs2321.OrderedPQ",
             "args": ""
         },
         {
