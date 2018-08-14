@@ -1,5 +1,9 @@
 package cs2321.sorting;
 
+import cs2321.ArrayList;
+
+import java.util.Random;
+
 /**
  * A test driver for Sorts.
  * 
@@ -13,10 +17,31 @@ public class SortTiming {
 	public static void main(String [] args){
 		
 		//#Examples of using testSort
-		Integer[] testee = {5, 3, 7, 2, 9, 3};
-		double avgtime = testSort(testee, new InsertionSort<Integer>());
-		
-		System.out.println("Insertion: " + avgtime);
+		Random rand=new Random();
+		Integer[] testee = new Integer[100000];
+		for(int i=0;i<100000;i++){
+			testee[i]=rand.nextInt();
+		}
+		ArrayList<Sorter<Integer>> sorters=new ArrayList<>();
+		int navi=0;
+		sorters.add(navi++, new QuickSort<>());
+		sorters.add(navi++ ,new MergeSort<>());
+		sorters.add(navi++ ,new InPlaceHeapSort<>());
+		sorters.add(navi++ ,new HeapSort<>());
+		sorters.add(navi++ ,new InPlaceInsertionSort<>());
+		sorters.add(navi++ ,new InPlaceSelectionSort<>());
+		sorters.add(navi++ ,new InsertionSort<>());
+		sorters.add(navi++, new SelectionSort<>());
+		for(int i=0;i<8;i++){
+			double start=System.nanoTime();
+			sorters.get(i).sort(testee.clone());
+			double end=System.nanoTime();
+			System.out.print((end-start)/1000000);
+			System.out.print(" ");
+		}
+		System.out.println();
+
+
 		
 	}
 
